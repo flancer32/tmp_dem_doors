@@ -1,5 +1,6 @@
 {
   "dBEAR": {
+    "namespace": "lv.flancer.test.doors",
     "entity": {
       "User": {
         "alias": "user",
@@ -25,6 +26,7 @@
         },
         "relation": {}
       }
-    }
+    },
+    "package": {}
   }
 }

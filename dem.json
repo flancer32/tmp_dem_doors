@@ -1,1 +1,30 @@
-{}
+{
+  "dBEAR": {
+    "entity": {
+      "User": {
+        "alias": "user",
+        "comment": "Any user who can login into the application.",
+        "attribute": {
+          "Id": {
+            "alias": "id",
+            "comment": "User ID.",
+            "nullable": false,
+            "type": {
+              "integer": {
+                "isUnsigned": true,
+                "isAutoincrement": true
+              }
+            }
+          }
+        },
+        "index": {
+          "PK": {
+            "type": "primary",
+            "aliases": ["id"]
+          }
+        },
+        "relation": {}
+      }
+    }
+  }
+}

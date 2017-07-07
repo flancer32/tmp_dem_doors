@@ -1,0 +1,32 @@
+{
+  "name": "tmp_dem_doors",
+  "version": "1.0.0",
+  "description": "temporary prj to develop DB schema",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "knex": "^0.13.0",
+    "mariasql": "^0.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flancer32/tmp_dem_doors.git"
+  },
+  "keywords": [
+    "temporary",
+    "temp",
+    "test",
+    "development",
+    "pet-project"
+  ],
+  "author": "Gusev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flancer32/tmp_dem_doors/issues"
+  },
+  "homepage": "https://github.com/flancer32/tmp_dem_doors#readme"
+}

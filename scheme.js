@@ -5,33 +5,33 @@
 'use strict'
 
 /* npm libs */
-var cmd = require('commander');
+var commander = require('commander');
 
-/* app incs */
-var cmdFuncs = require('./inc/commander');
+/* application includes */
 var ctx = require('./inc/context');
-var parser = require('./inc/parser');
+var cmd = require('./inc/cmd');
+var funcs = cmd.funcs;
 
-/* app configs */
-var cfg = require('./cfg');
-ctx.cfg = cfg;  // load local config and put to context
+/* application local configs */
+var cfg = require('./cfg'); // load local config
+ctx.cfg = cfg;  // ...and put it to application context
 
 /**
  * Define application options & commands.
  */
-cmd
+commander
     .version(require('./package.json').version)
-    .option('-i, --in [value]', 'Input DEM file (JSON)', cmdFuncs.absolutePath);
+    .option('-i, --in [value]', 'Input DEM file (JSON)', funcs.absolutePath);
 
-cmd
+commander
     .command('create')
     .description('Create DB scheme from DEM. Usage: scheme --in [value] create')
     .action(function (command) {
-        ctx.dem = cmd.in;
-        parser.exec(ctx)
+        ctx.dem = commander.in;
+        cmd.create.exec(ctx)
     });
 
 /**
  * Parse runtime parameters and execute requested command.
  */
-cmd.parse(process.argv);
+commander.parse(process.argv);

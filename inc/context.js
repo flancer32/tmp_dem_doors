@@ -1,7 +1,15 @@
+/**
+ * Structure of the application context.
+ */
 'use strict'
 
-module.exports = {
-    /* Application configuration */
-    cfg: null,
-    dem: null   // path to DEM JSON
+/**
+ * Application context.
+ *
+ * @namespace context
+ */
+var context = {
+    cfg: {},                    // application configuration
+    dem: ''                   // path to DEM JSON
 }
+module.exports = context;

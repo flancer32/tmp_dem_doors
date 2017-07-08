@@ -8,7 +8,10 @@
     "knex": "^0.13.0",
     "mariasql": "^0.2.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
+  },
   "scripts": {
     "test": "test"
   },

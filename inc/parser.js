@@ -1,11 +1,11 @@
 /**
- * Load DEM JSON and process all nodes to create DB schema.
+ * Index script to aggregate 'parser' code.
  */
 'use strict'
-
 var fs = require('fs');
+var context = require('./parser/context');
 
-function loader(file) {
+function load(file) {
     var result = JSON.parse(fs.readFileSync(file, 'utf8'));
     return result;
 }
@@ -29,14 +29,14 @@ function sortEntitiesByDeps(dem) {
         console.log("key" + key);
     }
 }
-
+/**
+ * Load DEM JSON and parse it. Save parsed data into context.
+ */
 function exec(ctx) {
-    var demFile = ctx.dem;
-    var dem = loader(demFile);
-    var sorted = sortEntitiesByDeps(dem);
-    console.log("parser");
+
 }
 
 module.exports = {
+    context: context,
     exec: exec
-}
+};

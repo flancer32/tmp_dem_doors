@@ -1,3 +1,8 @@
+/**
+ * Application common utilities.
+ *
+ * @namespace utils
+ */
 'use strict'
 
 /**

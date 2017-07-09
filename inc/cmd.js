@@ -2,10 +2,8 @@
  * Index script to aggregate 'cmd' code.
  */
 'use strict'
-var create = require('./cmd/create');
-var funcs = require('./cmd/funcs');
 
 module.exports = {
-    create: create, // command 'create'
-    funcs: funcs    // coercion functions for 'commander'
+    create: require('./cmd/create'), // command 'create'
+    funcs: require('./cmd/funcs')    // coercion functions for 'commander'
 };

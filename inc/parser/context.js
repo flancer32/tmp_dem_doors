@@ -5,14 +5,14 @@
 
 /**
  * @namespace parser.context
- * @type {{demPath: string, dem: {}, db: {tables: Array}}}
+ * @borrows data.db as db
+ * @borrows data.dem as dem
+ * @borrows string as demPath
  */
-var context = {
-    demPath: '',                    // path to DEM JSON
-    dem: {},                        // loaded DEM object
-    db: {                           // DB related data
-        tables: []                  // tables sorted in depended order
-    }
+let context = {
+    db: require('../data/db'),          // DB related data
+    dem: require('../data/dem'),        // loaded DEM object
+    demPath: '',                        // path to DEM JSON
 };
 
 module.exports = context;

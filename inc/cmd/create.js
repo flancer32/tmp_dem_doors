@@ -2,6 +2,8 @@
  * Command to load DEM JSON and process all nodes to create DB schema.
  */
 'use strict'
+var console = require('console');
+var builder = require('../builder');
 var parser = require('../parser');
 var utils = require('../utils');
 
@@ -10,12 +12,18 @@ var utils = require('../utils');
  * @param {context} ctx
  */
 function exec(ctx) {
-    var demFile = ctx.dem;
+    let demFile = ctx.dem;
     console.log('Create structure from "' + demFile + '".');
-    /** @type parser.context */
-    var ctxParser = utils.clone(parser.context);
+    /** @type {parser.context} */
+    let ctxParser = utils.clone(parser.context);
     ctxParser.demPath = demFile;
     parser.exec(ctxParser);
+    /** @type {builder.context} */
+    let ctxBuilder = utils.clone(builder.context);
+    ctxBuilder.cfg = ctx.cfg;
+    ctxBuilder.db = ctxParser.db;
+    builder.exec(ctxBuilder);
+    console.log('Done.');
 }
 
 module.exports = {

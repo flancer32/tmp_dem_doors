@@ -1,32 +1,59 @@
 {
   "dBEAR": {
-    "namespace": "lv.flancer.test.doors",
-    "entity": {
-      "User": {
-        "alias": "user",
-        "comment": "Any user who can login into the application.",
-        "attribute": {
-          "Id": {
-            "alias": "id",
-            "comment": "User ID.",
-            "nullable": false,
-            "type": {
-              "integer": {
-                "isUnsigned": true,
-                "isAutoincrement": true
+    "pack": {
+      "Root": {
+        "alias": "doors",
+        "entity": {
+          "User": {
+            "alias": "user",
+            "comment": "Any user who can login into the application.",
+            "attribute": {
+              "Id": {
+                "alias": "id",
+                "comment": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
               }
-            }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            },
+            "relation": {}
+          },
+          "Company": {
+            "alias": "company",
+            "comment": "Companies are groups of the users.",
+            "attribute": {
+              "Id": {
+                "alias": "id",
+                "comment": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
+              }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            },
+            "relation": {}
           }
-        },
-        "index": {
-          "PK": {
-            "type": "primary",
-            "aliases": ["id"]
-          }
-        },
-        "relation": {}
+        }
       }
-    },
-    "package": {}
+    }
   }
 }

@@ -28,6 +28,30 @@
             },
             "relation": {}
           },
+          "Acl": {
+            "alias": "acl",
+            "comment": "just one more table.",
+            "attribute": {
+              "Id": {
+                "alias": "id",
+                "comment": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
+              }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            },
+            "relation": {}
+          },
           "Company": {
             "alias": "company",
             "comment": "Companies are groups of the users.",

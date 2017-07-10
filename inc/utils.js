@@ -3,18 +3,15 @@
  *
  * @namespace utils
  */
-'use strict';
-
-/**
- * Clone 'object'.
- *
- * @param obj
- */
-function clone(obj) {
-    var result = JSON.parse(JSON.stringify(obj));
-    return result;
-}
-
 module.exports = {
-    clone: clone
+    /**
+     * Clone 'object'.
+     *
+     * @param {object} obj object to clone
+     * @returns {object} cloned object
+     */
+    clone: function clone(obj) {
+        var result = JSON.parse(JSON.stringify(obj));
+        return result;
+    }
 };

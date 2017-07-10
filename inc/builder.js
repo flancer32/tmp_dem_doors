@@ -1,7 +1,8 @@
 /**
  * Index script to aggregate 'builder' code.
+ *
+ * @namespace builder
  */
-'use strict';
 var console = require('console');
 var knexLib = require('knex');
 var context = require('./builder/context');
@@ -43,6 +44,7 @@ function sessionClose(ctx) {
 }
 
 function createTables(ctx) {
+    /** @type data.db.tables[] */
     const tables = ctx.db.tables;
     let current = ctx.currentTableIndex;
     if (current == undefined) {
@@ -95,6 +97,9 @@ function exec(ctx) {
 
 }
 
+/**
+ * @namespace builder
+ */
 module.exports = {
     context: context,
     exec: exec

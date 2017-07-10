@@ -1,13 +1,7 @@
 /**
- * @namespace dem
- * @memberOf data
+ * @namespace data.dem
  */
-'use strict';
 
-/**
- * @namespace
- * @memberOf data.dem.dBEAR
- */
 var entity = {
     alias: '',
     comment: ''
@@ -39,4 +33,7 @@ var dem = {
     dBEAR: dBEAR
 };
 
+/**
+ * @namespace data.dem
+ */
 module.exports = dem;

@@ -1,9 +1,12 @@
 /**
  * Index script to aggregate 'cmd' code.
+ *
+ * @namespace cmd
+ *
+ * @borrows cmd.create as create
+ * @borrows cmd.func as func
  */
-'use strict';
-
 module.exports = {
     create: require('./cmd/create'), // command 'create'
-    funcs: require('./cmd/funcs')    // coercion functions for 'commander'
+    func: require('./cmd/func')      // coercion functions for 'commander'
 };

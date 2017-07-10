@@ -2,7 +2,91 @@
   "dBEAR": {
     "pack": {
       "Root": {
-        "alias": "doors",
+        "alias": "root",
+        "entity": {
+          "User": {
+            "alias": "user",
+            "comment": "Any user who can login into the application.",
+            "attribute": {
+              "Id": {
+                "alias": "id",
+                "comment": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
+              }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            },
+            "relation": {}
+          },
+          "Acl": {
+            "alias": "acl",
+            "comment": "just one more table.",
+            "attribute": {
+              "Id": {
+                "alias": "id",
+                "comment": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
+              }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            },
+            "relation": {}
+          },
+          "Company": {
+            "alias": "company",
+            "comment": "Companies are groups of the users.",
+            "attribute": {
+              "Id": {
+                "alias": "id",
+                "comment": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
+              }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            },
+            "relation": {}
+          }
+        }
+      },
+      "Other": {
+        "alias": "other",
+        "pack": {
+          "Nested": {
+            "alias": "nested",
+            "comment": "nested package for example.",
+            "entity": {}
+          }
+        },
         "entity": {
           "User": {
             "alias": "user",

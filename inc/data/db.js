@@ -1,18 +1,9 @@
 /**
  * Structure for database related data.
  *
- * @namespace db
- * @memberOf data
- */
-'use strict';
-
-/**
- * Module's root structure.
- *
  * @namespace data.db
+ * @borrows data.db.table[] as tables
  */
-var db = {
+module.exports = {
     tables: []
 };
-
-module.exports = db;

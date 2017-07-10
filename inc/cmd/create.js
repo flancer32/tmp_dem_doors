@@ -1,7 +1,7 @@
 /**
  * Command to load DEM JSON and process all nodes to create DB schema.
+ * @namespace cmd.create
  */
-'use strict';
 var console = require('console');
 var builder = require('../builder');
 var parser = require('../parser');
@@ -9,6 +9,7 @@ var utils = require('../utils');
 
 /**
  * Main function to execute command 'create'
+ *
  * @param {context} ctx
  */
 function exec(ctx) {
@@ -26,6 +27,9 @@ function exec(ctx) {
     console.log('Done.');
 }
 
+/**
+ * @namespace cmd.create
+ */
 module.exports = {
     exec: exec
 };

@@ -1,7 +1,8 @@
 /**
  * Commander coercion functions (https://www.npmjs.com/package/commander#coercion).
+ *
+ * @namespace cmd.func
  */
-'use strict';
 
 var path = require('path');
 
@@ -17,6 +18,9 @@ function absolutePath(val) {
     return result;
 }
 
+/**
+ * @namespace cmd.func
+ */
 module.exports = {
     absolutePath: absolutePath
 };

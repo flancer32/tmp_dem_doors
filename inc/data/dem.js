@@ -2,7 +2,7 @@
  * @namespace dem
  * @memberOf data
  */
-'use strict'
+'use strict';
 
 /**
  * @namespace

@@ -1,7 +1,7 @@
 /**
  * Structure of the application context.
  */
-'use strict'
+'use strict';
 
 /**
  * Application context.
@@ -10,8 +10,8 @@
  * @borrows data.cfg as cfg
  * @borrows data.dem as dem
  */
-var context = {
+let context = {
     cfg: require('./data/cfg'),                    // application configuration
     dem: require('./data/dem')                     // path to DEM JSON
-}
+};
 module.exports = context;

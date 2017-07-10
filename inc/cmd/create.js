@@ -1,7 +1,7 @@
 /**
  * Command to load DEM JSON and process all nodes to create DB schema.
  */
-'use strict'
+'use strict';
 var console = require('console');
 var builder = require('../builder');
 var parser = require('../parser');
@@ -28,4 +28,4 @@ function exec(ctx) {
 
 module.exports = {
     exec: exec
-}
+};

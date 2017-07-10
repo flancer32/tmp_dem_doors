@@ -3,7 +3,7 @@
  *
  * @namespace utils
  */
-'use strict'
+'use strict';
 
 /**
  * Clone 'object'.

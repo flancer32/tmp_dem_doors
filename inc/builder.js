@@ -1,7 +1,8 @@
 /**
  * Index script to aggregate 'builder' code.
  */
-'use strict'
+'use strict';
+var console = require('console');
 var knexLib = require('knex');
 var context = require('./builder/context');
 
@@ -23,7 +24,7 @@ function exec(ctx) {
     let cfg = ctx.cfg;
     /** @type {data.db} */
     let db = ctx.db;
-    let knex = knexLib(cfg.knex)
+    let knex = knexLib(cfg.knex);
     let tables = db.tables;
     for (let one of tables) {
         let tbl = utilConvertFullName(one);
@@ -33,7 +34,7 @@ function exec(ctx) {
             table.timestamps();
         }).finally(function () {
             knex.destroy(function () {
-                console.log("Done");
+                console.log('Done');
             });
         });
     }

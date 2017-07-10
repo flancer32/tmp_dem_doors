@@ -1,8 +1,8 @@
 /**
  * Index script to aggregate 'parser' code.
  */
-'use strict'
-var fs = require('fs');
+'use strict';
+let fs = require('fs');
 var console = require('console');
 var context = require('./parser/context');
 
@@ -33,7 +33,7 @@ function collectTables(ctx) {
         let one = packs[pName];
         let pAlias = one.alias;
         let comment = one.comment;
-        console.log("Package '%s' with alias '%s'.", pName, pAlias);
+        console.log('Package \'%s\' with alias \'%s\'.', pName, pAlias);
         /* parse entries */
         let entities = one.entity;
         let eNames = Object.keys(entities);
@@ -42,10 +42,10 @@ function collectTables(ctx) {
             let one = entities[eName];
             let eAlias = one.alias;
             let comment = one.comment;
-            console.log("Entity '%s' with alias '%s' from pack '%s'.", eName, eAlias, pAlias);
+            console.log('Entity \'%s\' with alias \'%s\' from pack \'%s\'.', eName, eAlias, pAlias);
             let fullName = pAlias + '.' + eAlias;
             let tableName = fullName;
-            console.log("Table name: %s", tableName);
+            console.log('Table name: %s', tableName);
             db.tables.push(tableName);
         }
     }

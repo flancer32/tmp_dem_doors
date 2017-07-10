@@ -1,9 +1,9 @@
 /**
  * Commander coercion functions (https://www.npmjs.com/package/commander#coercion).
  */
-'use strict'
+'use strict';
 
-var path = require('path')
+var path = require('path');
 
 /**
  * Return absolute path to file related to working directory.
@@ -12,11 +12,11 @@ var path = require('path')
  * @returns {string}
  */
 function absolutePath(val) {
-    var currentDir = process.cwd()
-    var result = path.join(currentDir, val)
-    return result
+    var currentDir = process.cwd();
+    var result = path.join(currentDir, val);
+    return result;
 }
 
 module.exports = {
     absolutePath: absolutePath
-}
+};

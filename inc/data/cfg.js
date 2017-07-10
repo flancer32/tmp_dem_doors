@@ -4,7 +4,7 @@
  * @namespace cfg
  * @memberOf data
  */
-'use strict'
+'use strict';
 
 /**
  * see http://knexjs.org/#Installation-client
@@ -22,7 +22,7 @@ let knex = {
         db: ''
     },
     debug: true
-}
+};
 
 /**
  * @namespace cfg
@@ -31,4 +31,4 @@ let knex = {
  */
 module.exports = {
     knex: knex
-}
+};

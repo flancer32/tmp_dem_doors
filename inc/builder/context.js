@@ -1,7 +1,7 @@
 /**
  * Structure of the builder context.
  */
-'use strict'
+'use strict';
 
 /**
  * @namespace builder.context

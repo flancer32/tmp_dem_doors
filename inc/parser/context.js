@@ -1,7 +1,7 @@
 /**
  * Structure of the parser context.
  */
-'use strict'
+'use strict';
 
 /**
  * @namespace parser.context

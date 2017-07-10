@@ -4,7 +4,7 @@
  * @namespace db
  * @memberOf data
  */
-'use strict'
+'use strict';
 
 /**
  * Module's root structure.

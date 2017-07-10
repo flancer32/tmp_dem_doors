@@ -1,3 +1,4 @@
+let console = require('console');
 var cfg = require('./cfg');
 var knex = require('knex')(cfg);
 

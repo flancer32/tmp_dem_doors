@@ -1,7 +1,7 @@
 /**
  * Index script to aggregate 'cmd' code.
  */
-'use strict'
+'use strict';
 
 module.exports = {
     create: require('./cmd/create'), // command 'create'

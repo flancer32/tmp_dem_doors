@@ -2,6 +2,9 @@
  * @namespace data.dem.dBEAR.entity
  */
 module.exports = {
-    alias: '',
-    comment: ''
+    as: '',
+    desc: '',
+    attr: {},
+    index: {},
+    relation: {}
 };

@@ -1,164 +1,45 @@
 {
   "dBEAR": {
     "pack": {
-      "Root": {
-        "alias": "root",
-        "entity": {
-          "User": {
-            "alias": "user",
-            "comment": "Any user who can login into the application.",
-            "attribute": {
-              "Id": {
-                "alias": "id",
-                "comment": "User ID.",
-                "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
-              }
-            },
-            "index": {
-              "PK": {
-                "type": "primary",
-                "aliases": ["id"]
-              }
-            },
-            "relation": {}
-          },
-          "Acl": {
-            "alias": "acl",
-            "comment": "just one more table.",
-            "attribute": {
-              "Id": {
-                "alias": "id",
-                "comment": "User ID.",
-                "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
-              }
-            },
-            "index": {
-              "PK": {
-                "type": "primary",
-                "aliases": ["id"]
-              }
-            },
-            "relation": {}
-          },
-          "Company": {
-            "alias": "company",
-            "comment": "Companies are groups of the users.",
-            "attribute": {
-              "Id": {
-                "alias": "id",
-                "comment": "User ID.",
-                "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
-              }
-            },
-            "index": {
-              "PK": {
-                "type": "primary",
-                "aliases": ["id"]
-              }
-            },
-            "relation": {}
-          }
-        }
+      "Core": {
+        "as": "core",
+        "desc": "Core entities (rather meta data than domain data).",
+        "entity": {}
       },
-      "Other": {
-        "alias": "other",
+      "User": {
+        "as": "user",
+        "desc": "Package with user related entities (acl, etc.).",
         "pack": {
           "Nested": {
-            "alias": "nested",
-            "comment": "nested package for example.",
+            "as": "nested",
+            "desc": "nested package for example.",
             "entity": {}
           }
         },
-        "entity": {
-          "User": {
-            "alias": "user",
-            "comment": "Any user who can login into the application.",
-            "attribute": {
-              "Id": {
-                "alias": "id",
-                "comment": "User ID.",
-                "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
+        "entity": {}
+      }
+    },
+    "entity": {
+      "User": {
+        "as": "user",
+        "desc": "Any user who can login into the application (top level entity).",
+        "attr": {
+          "Id": {
+            "as": "id",
+            "desc": "User ID.",
+            "nullable": false,
+            "type": {
+              "integer": {
+                "isUnsigned": true,
+                "isAutoincrement": true
               }
-            },
-            "index": {
-              "PK": {
-                "type": "primary",
-                "aliases": ["id"]
-              }
-            },
-            "relation": {}
-          },
-          "Acl": {
-            "alias": "acl",
-            "comment": "just one more table.",
-            "attribute": {
-              "Id": {
-                "alias": "id",
-                "comment": "User ID.",
-                "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
-              }
-            },
-            "index": {
-              "PK": {
-                "type": "primary",
-                "aliases": ["id"]
-              }
-            },
-            "relation": {}
-          },
-          "Company": {
-            "alias": "company",
-            "comment": "Companies are groups of the users.",
-            "attribute": {
-              "Id": {
-                "alias": "id",
-                "comment": "User ID.",
-                "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
-              }
-            },
-            "index": {
-              "PK": {
-                "type": "primary",
-                "aliases": ["id"]
-              }
-            },
-            "relation": {}
+            }
+          }
+        },
+        "index": {
+          "PK": {
+            "type": "primary",
+            "aliases": ["id"]
           }
         }
       }

@@ -56,7 +56,7 @@ function parse(ctx) {
             const ctxEntity = utils.clone(parserEntity.context);
             ctxEntity.db = db;
             ctxEntity.name = name;
-            ctxEntity.path = '/';  // initial path is empty
+            ctxEntity.pack = '/';  // initial path is empty
             ctxEntity.current = entity;
             parserEntity.exec(ctxEntity);
         }

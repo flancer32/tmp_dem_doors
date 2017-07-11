@@ -6,9 +6,9 @@
  * @borrows data.db as db
  */
 let context = {
-    path: '',       // full path to the current package (com.flancer32.doors)
-    name: '',       // name of the current package (Root)
-    current: {},    // currently processing package structure
+    pack: '',       // full path to the current package ('/user/group')
+    name: '',       // name of the current entity (SaleOrder)
+    current: {},    // currently processing entity structure
     db: {},         // DB structure to save parsed results
 };
 

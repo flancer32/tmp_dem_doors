@@ -16,7 +16,31 @@
             "entity": {}
           }
         },
-        "entity": {}
+        "entity": {
+          "Group": {
+            "as": "group",
+            "desc": "User group to use in relation.",
+            "attr": {
+              "Id": {
+                "as": "id",
+                "desc": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
+              }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            }
+          }
+        }
       }
     },
     "entity": {
@@ -34,12 +58,32 @@
                 "isAutoincrement": true
               }
             }
+          },
+          "GroupRef": {
+            "as": "group_ref",
+            "desc": "User Group ref.",
+            "nullable": false,
+            "type": {
+              "integer": {
+                "isUnsigned": true
+              }
+            }
           }
         },
         "index": {
           "PK": {
             "type": "primary",
             "aliases": ["id"]
+          }
+        },
+        "relation": {
+          "toUserGroup": {
+            "own": ["group_ref"],
+            "ref": {
+              "path": "/user/group",
+              "attrs": ["id"]
+            },
+            "action": {"delete": "restrict", "update": "restrict"}
           }
         }
       }

@@ -6,8 +6,10 @@ const console = require('console');
 
 const context = require('./entity/context');
 const utils = require('../utils');
+const dataDbTable = require('../data/db/table');
 
 /**
+ * Parse entity.
  *
  * @param {parser.entity.context} ctx
  */
@@ -15,7 +17,7 @@ function exec(ctx) {
     /* get working vars from context */
     const db = ctx.db;
     const entityName = ctx.name;
-    const path = ctx.path;
+    const pack = ctx.pack;
     /** @type data.dem.dBEAR.entity */
     const current = ctx.current;
 
@@ -25,7 +27,29 @@ function exec(ctx) {
     const attrs = current.attr;
     const indexes = current.index;
     const relations = current.relation;
+    const path = utils.path(pack, alias);
     console.log('Parse entity "%s" as "%s" (path: "%s"; comment: "%s")', entityName, alias, path, comment);
+    /* create data object to save parsed values */
+    /** @type data.db.table */
+    const dbTable = utils.clone(dataDbTable);
+    dbTable.fullName = path;
+    /* parse entity relations */
+    if (typeof relations === 'object') {
+        const names = Object.keys(relations);
+        for (let name of names) {
+            /** @type data.dem.dBEAR.entity.relation */
+            const one = relations[name];
+            /** @type data.dem.dBEAR.entity.relation.ref */
+            const ref = one.ref;
+            const depPath = utils.path(ref.path); // path to related entity (dependency)
+            dbTable.relations.push(depPath);
+            console.log('Ref: %s', JSON.stringify(depPath));
+        }
+    }
+
+    db.tables.push(dbTable);
+
+
     // if (typeof packs === 'object') {
     //     const names = Object.keys(packs);
     //     for (let name of names) {

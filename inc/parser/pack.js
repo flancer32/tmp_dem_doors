@@ -48,7 +48,7 @@ function exec(ctx) {
             const ctxEntNested = utils.clone(ctxEntity);
             ctxEntNested.db = ctx.db;
             ctxEntNested.name = name;
-            ctxEntNested.path = path + alias + '/';
+            ctxEntNested.pack = path + alias + '/';
             ctxEntNested.current = entity;
             parserEntity.exec(ctxEntNested);
         }

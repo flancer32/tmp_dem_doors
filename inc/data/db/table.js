@@ -8,5 +8,4 @@ module.exports = {
     attributes: [],
     indexes: [],
     relations: []
-
 };

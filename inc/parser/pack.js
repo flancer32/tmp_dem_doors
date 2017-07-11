@@ -1,3 +1,7 @@
+/**
+ * @namespace parser.pack
+ */
+
 const console = require('console');
 
 const context = require('./pack/context');

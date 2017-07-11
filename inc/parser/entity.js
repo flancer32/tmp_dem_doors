@@ -41,6 +41,8 @@ function exec(ctx) {
 
 /**
  * @namespace parser.entity
+ *
+ * @borrows parser.entity.context as context
  */
 module.exports = {
     context: context,

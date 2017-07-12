@@ -17,6 +17,29 @@
           }
         },
         "entity": {
+          "ACL": {
+            "as": "acl",
+            "desc": "Access control list",
+            "attr": {
+              "Id": {
+                "as": "id",
+                "desc": "User ID.",
+                "nullable": false,
+                "type": {
+                  "integer": {
+                    "isUnsigned": true,
+                    "isAutoincrement": true
+                  }
+                }
+              }
+            },
+            "index": {
+              "PK": {
+                "type": "primary",
+                "aliases": ["id"]
+              }
+            }
+          },
           "Group": {
             "as": "group",
             "desc": "User group to use in relation.",

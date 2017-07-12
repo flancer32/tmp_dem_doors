@@ -8,7 +8,8 @@
  *
  * @type {string}
  */
-const PD = '/';
+const PD = '/';     // path delimiter (in DEM)
+const ND = '_';     // names delimiter (in DB)
 /**
  * @namespace utils
  */
@@ -38,6 +39,19 @@ module.exports = {
         while (result.includes(double)) {
             result = result.replace(double, PD);
         }
+        return result;
+    },
+    /**
+     * Conver DEM path to DB allowed name.
+     *
+     * @param Pstring} path DEM path (/usr/group/role)
+     * @returns {string} DB allowed name (usr_group_role)
+     */
+    dbName: function (path) {
+        /* TODO: create pattern based on utils.PD */
+        let result = path.replace(/\//g, ND);
+        if (result.charAt(0) === ND)
+            result = result.slice(1);
         return result;
     }
 };

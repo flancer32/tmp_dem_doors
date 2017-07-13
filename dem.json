@@ -65,6 +65,16 @@
             "desc": "User ID.",
             "increment": true
           },
+          "UserName": {
+            "as": "username",
+            "desc": "User's login name.",
+            "text": true
+          },
+          "Email": {
+            "as": "email",
+            "desc": "User's email.",
+            "text": true
+          },
           "GroupRef": {
             "as": "group_ref",
             "desc": "User Group ref.",

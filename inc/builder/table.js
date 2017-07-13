@@ -29,20 +29,27 @@ function create(ctx) {
                     /** @type data.db.table.attribute */
                     for (let one of attrs) {
                         const colName = one.name;
+                        let column;
                         if (one.type === attrType.increments) {
-                            baby.increments(colName);
+                            column = baby.increments(colName);
                         } else if (one.type === attrType.binary) {
-                            baby.binary(colName);
+                            column = baby.binary(colName);
                         } else if (one.type === attrType.boolean) {
-                            baby.boolean(colName);
+                            column = baby.boolean(colName);
                         } else if (one.type === attrType.integer) {
-                            baby.integer(colName);
+                            column = baby.integer(colName);
                         } else if (one.type === attrType.decimal) {
-                            baby.decimal(colName);
+                            column = baby.decimal(colName);
                         } else if (one.type === attrType.enum) {
-                            baby.enu(colName);
+                            column = baby.enu(colName);
                         } else if (one.type === attrType.string) {
-                            baby.string(colName);
+                            column = baby.string(colName);
+                        }
+                        /* nullable */
+                        if (one.nullable === true) {
+                            column.nullable();
+                        } else {
+                            column.notNullable();
                         }
                     }
                 })

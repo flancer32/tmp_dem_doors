@@ -16,16 +16,23 @@ function create(ctx) {
             const tables = ctx.db.tables;
             let current = ctx.currentTableIndex;
             /** @type {data.db.table} */
-            const table = tables[current];
+            var table = tables[current];
             const name = utils.dbName(table.fullName);
             console.log('Create table: %s.', name);
             current += 1;
             ctx.currentTableIndex = current;
             knex.schema
-                .createTableIfNotExists(name, (table) => {
-                    table.increments();
-                    table.string('name');
-                    table.timestamps();
+                .createTableIfNotExists(name, (baby) => {
+                    const attrssss = table.attributes;
+                    /** @type data.db.table.attribute */
+                    for (let one of attrssss) {
+                        const colName = one.name;
+                        if (one.type == 'increment') {
+                            baby.increments(colName);
+                        } else {
+                            baby.string(colName);
+                        }
+                    }
                 })
                 .then(() => {
                     console.log('Table %s is created.', name);

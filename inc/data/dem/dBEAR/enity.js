@@ -9,7 +9,7 @@ module.exports = {
      *
      * @see data.dem.dBEAR.entity.attr
      */
-    attr: {},
+    attrs: {},
     /**
      * Object with named 'index' props.
      *

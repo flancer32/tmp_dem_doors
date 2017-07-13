@@ -20,17 +20,11 @@
           "ACL": {
             "as": "acl",
             "desc": "Access control list",
-            "attr": {
+            "attrs": {
               "Id": {
-                "as": "id",
+                "as": "entity_id",
                 "desc": "User ID.",
-                "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
+                "increment": true
               }
             },
             "index": {
@@ -43,7 +37,7 @@
           "Group": {
             "as": "group",
             "desc": "User group to use in relation.",
-            "attr": {
+            "attrs": {
               "Id": {
                 "as": "id",
                 "desc": "User ID.",
@@ -70,27 +64,17 @@
       "User": {
         "as": "user",
         "desc": "Any user who can login into the application (top level entity).",
-        "attr": {
+        "attrs": {
           "Id": {
             "as": "id",
             "desc": "User ID.",
-            "nullable": false,
-            "type": {
-              "integer": {
-                "isUnsigned": true,
-                "isAutoincrement": true
-              }
-            }
+            "increment": true
           },
           "GroupRef": {
             "as": "group_ref",
             "desc": "User Group ref.",
-            "nullable": false,
-            "type": {
-              "integer": {
-                "isUnsigned": true
-              }
-            }
+            "integer": true,
+            "unsigned": true
           }
         },
         "index": {

@@ -4,9 +4,12 @@
 
 const console = require('console');
 
-const context = require('./entity/context');
 const utils = require('../utils');
-const dataDbTable = require('../data/db/table');
+const context = require('./entity/context');
+const parserAttr = require('./entity/attr');
+const origCtxAttr = require('./entity/attr/context');
+const origDbTable = require('../data/db/table');
+const origDbTableAttr = require('../data/db/table/attribute');
 
 /**
  * Parse entity.
@@ -24,15 +27,31 @@ function exec(ctx) {
     /* parse current entity */
     const alias = current.as;
     const comment = current.desc;
-    const attrs = current.attr;
+    const attrs = current.attrs;
     const indexes = current.index;
     const relations = current.relation;
     const path = utils.path(pack, alias);
     console.log('Parse entity "%s" as "%s" (path: "%s"; comment: "%s")', entityName, alias, path, comment);
     /* create data object to save parsed values */
     /** @type data.db.table */
-    const dbTable = utils.clone(dataDbTable);
+    const dbTable = utils.clone(origDbTable);
     dbTable.fullName = path;
+
+    /* parse entity relations */
+    if (typeof attrs === 'object') {
+        const names = Object.keys(attrs);
+        for (let name of names) {
+            /** @type data.dem.dBEAR.entity.attr */
+            const one = attrs[name];
+            /** @type parser.entity.attr.context */
+            const ctxAttr = utils.clone(origCtxAttr);
+            ctxAttr.name = name;
+            ctxAttr.current = one;
+            ctxAttr.table = dbTable;
+            parserAttr.exec(ctxAttr);
+        }
+    }
+
     /* parse entity relations */
     if (typeof relations === 'object') {
         const names = Object.keys(relations);
@@ -48,33 +67,7 @@ function exec(ctx) {
     }
 
     db.tables.push(dbTable);
-
-
-    // if (typeof packs === 'object') {
-    //     const names = Object.keys(packs);
-    //     for (let name of names) {
-    //         /** @type data.dem.dBEAR.pack */
-    //         let one = current[name];
-    //         let alias = one.alias;
-    //         let comment = one.comment;
-    //         console.log('Package \'%s\' with alias \'%s\'.', name, alias);
-    //         /* parse entries */
-    //         let entities = one.entity;
-    //         let eNames = Object.keys(entities);
-    //         for (let eName of eNames) {
-    //             /** @type data.dem.dBEAR.entity */
-    //             let one = entities[eName];
-    //             let eAlias = one.alias;
-    //             let comment = one.comment;
-    //             console.log('Entity \'%s\' with alias \'%s\' from pack \'%s\'.', eName, eAlias, alias);
-    //             let fullName = alias + '.' + eAlias;
-    //             let tableName = fullName;
-    //             console.log('Table name: %s', tableName);
-    //             db.tables.push(tableName);
-    //         }
-    //     }
-    // }
-};
+}
 
 /**
  * @namespace parser.entity

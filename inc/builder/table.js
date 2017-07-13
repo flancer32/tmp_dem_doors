@@ -1,35 +1,47 @@
 const console = require('console');
 const utils = require('../utils');
+/** @type data.db.table.attribute.type */
+const attrType = require('../data/db/table/attribute/type');
+
 
 function create(ctx) {
-    /** @type data.db.tables[] */
-    const tables = ctx.db.tables;
+    const total = ctx.db.tables.length;
     let current = ctx.currentTableIndex;
-    if (current == undefined) {
+    if (current === undefined) {
         current = 0;
         ctx.currentTableIndex = current;
     }
-    if (current < tables.length) {
+    if (current < total) {
         /* continue loop of promises */
         return new Promise(function (resolve) {
             const knex = ctx.knex;
             const tables = ctx.db.tables;
             let current = ctx.currentTableIndex;
             /** @type {data.db.table} */
-            var table = tables[current];
+            let table = tables[current];
             const name = utils.dbName(table.fullName);
             console.log('Create table: %s.', name);
             current += 1;
             ctx.currentTableIndex = current;
             knex.schema
                 .createTableIfNotExists(name, (baby) => {
-                    const attrssss = table.attributes;
+                    const attrs = table.attributes;
                     /** @type data.db.table.attribute */
-                    for (let one of attrssss) {
+                    for (let one of attrs) {
                         const colName = one.name;
-                        if (one.type == 'increment') {
+                        if (one.type === attrType.increments) {
                             baby.increments(colName);
-                        } else {
+                        } else if (one.type === attrType.binary) {
+                            baby.binary(colName);
+                        } else if (one.type === attrType.boolean) {
+                            baby.boolean(colName);
+                        } else if (one.type === attrType.integer) {
+                            baby.integer(colName);
+                        } else if (one.type === attrType.decimal) {
+                            baby.decimal(colName);
+                        } else if (one.type === attrType.enum) {
+                            baby.enu(colName);
+                        } else if (one.type === attrType.string) {
                             baby.string(colName);
                         }
                     }
@@ -47,14 +59,13 @@ function create(ctx) {
 
 
 function drop(ctx) {
-    /** @type data.db.tables[] */
-    const tables = ctx.db.tables;
+    const total = ctx.db.tables.length;
     let current = ctx.currentTableIndex;
-    if (current == undefined) {
+    if (current === undefined) {
         current = 0;
         ctx.currentTableIndex = current;
     }
-    if (current < tables.length) {
+    if (current < total) {
         /* continue loop of promises */
         return new Promise((resolve) => {
             const knex = ctx.knex;

@@ -42,12 +42,7 @@
                 "as": "id",
                 "desc": "User ID.",
                 "nullable": false,
-                "type": {
-                  "integer": {
-                    "isUnsigned": true,
-                    "isAutoincrement": true
-                  }
-                }
+                "increment": true
               }
             },
             "index": {

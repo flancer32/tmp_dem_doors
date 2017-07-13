@@ -7,6 +7,8 @@ const console = require('console');
 const context = require('./attr/context');
 const utils = require('../../utils');
 const origDbTableAttr = require('../../data/db/table/attribute');
+/** @type data.db.table.attribute.type */
+const attrType = require('../../data/db/table/attribute/type');
 
 /**
  * Parse entity atttribute.
@@ -29,11 +31,23 @@ function exec(ctx) {
     dbAttr.name = current.as;
     dbAttr.comment = current.desc;
     if (current.increment) {
-        dbAttr.type = 'increment';
+        dbAttr.type = attrType.increments;
+    } else if (current.binary) {
+        dbAttr.type = attrType.binary;
+    } else if (current.boolean) {
+        dbAttr.type = attrType.boolean;
+    } else if (current.integer) {
+        dbAttr.type = attrType.integer;
+    } else if (current.numeric) {
+        dbAttr.type = attrType.decimal;
+    } else if (current.option) {
+        dbAttr.type = attrType.enum;
+    } else if (current.text) {
+        dbAttr.type = attrType.string;
     }
     table.attributes.push(dbAttr);
     console.log('\t\tAttr: %s', attrName);
-};
+}
 
 /**
  * @namespace parser.entity.attr

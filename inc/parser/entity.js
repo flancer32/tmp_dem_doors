@@ -7,9 +7,9 @@ const console = require('console');
 const utils = require('../utils');
 const context = require('./entity/context');
 const parserAttr = require('./entity/attr');
+const parserRel = require('./entity/relation');
 const origCtxAttr = require('./entity/attr/context');
 const origDbTable = require('../data/db/table');
-const origDbTableAttr = require('../data/db/table/attribute');
 
 /**
  * Parse entity.
@@ -33,18 +33,21 @@ function exec(ctx) {
     const path = utils.path(pack, alias);
     console.log('Parse entity "%s" as "%s" (path: "%s"; comment: "%s")', entityName, alias, path, comment);
     /* create data object to save parsed values */
-    /** @type data.db.table */
+    /**
+     * Table object to be processed in 'builder' (@see {@link builder.table})
+     * @type data.db.table
+     */
     const dbTable = utils.clone(origDbTable);
     dbTable.fullName = path;
 
-    /* parse entity relations */
+    /* parse entity attributes */
     if (typeof attrs === 'object') {
         const names = Object.keys(attrs);
         for (let name of names) {
             /** @type data.dem.dBEAR.entity.attr */
             const one = attrs[name];
             /** @type parser.entity.attr.context */
-            const ctxAttr = utils.clone(origCtxAttr);
+            const ctxAttr = utils.clone(parserAttr.context);
             ctxAttr.name = name;
             ctxAttr.current = one;
             ctxAttr.table = dbTable;
@@ -58,11 +61,12 @@ function exec(ctx) {
         for (let name of names) {
             /** @type data.dem.dBEAR.entity.relation */
             const one = relations[name];
-            /** @type data.dem.dBEAR.entity.relation.ref */
-            const ref = one.ref;
-            const depPath = utils.path(ref.path); // path to related entity (dependency)
-            dbTable.relations.push(depPath);
-            console.log('Ref: %s', JSON.stringify(depPath));
+            /** @type parser.entity.relation.context */
+            const ctxRel = utils.clone(parserRel.context);
+            ctxRel.name = name;
+            ctxRel.current = one;
+            ctxRel.table = dbTable;
+            parserRel.exec(ctxRel);
         }
     }
 
@@ -73,6 +77,7 @@ function exec(ctx) {
  * @namespace parser.entity
  *
  * @borrows parser.entity.context as context
+ * @borrows parser.entity.exec as exec
  */
 module.exports = {
     context: context,

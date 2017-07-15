@@ -5,6 +5,7 @@ module.exports = {
     as: '',
     desc: '',
     nullable: false,
+    unsigned: false,
     default: '',
     /* attribute types: 'true|false' is better for structure reviewing in IDE */
     increment: false,

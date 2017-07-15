@@ -7,5 +7,5 @@ module.exports = {
     comment: '',
     attributes: [],
     indexes: [],
-    relations: []
+    foreigns: []
 };

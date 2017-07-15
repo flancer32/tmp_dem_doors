@@ -6,6 +6,7 @@
 const fs = require('fs');
 
 const context = require('./parser/context');
+/** @type parser.entity.exec */
 const parserEntity = require('./parser/entity');
 const parserPack = require('./parser/pack');
 const utils = require('./utils');

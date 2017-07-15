@@ -4,18 +4,6 @@
       "Core": {
         "as": "core",
         "desc": "Core entities (rather meta data than domain data).",
-        "entity": {}
-      },
-      "User": {
-        "as": "user",
-        "desc": "Package with user related entities (acl, etc.).",
-        "pack": {
-          "Nested": {
-            "as": "nested",
-            "desc": "nested package for example.",
-            "entity": {}
-          }
-        },
         "entity": {
           "ACL": {
             "as": "acl",
@@ -33,7 +21,20 @@
                 "aliases": ["id"]
               }
             }
-          },
+          }
+        }
+      },
+      "User": {
+        "as": "user",
+        "desc": "Package with user related entities (acl, etc.).",
+        "pack": {
+          "Nested": {
+            "as": "nested",
+            "desc": "nested package for example.",
+            "entity": {}
+          }
+        },
+        "entity": {
           "Group": {
             "as": "group",
             "desc": "User group to use in relation.",
@@ -43,6 +44,11 @@
                 "desc": "User ID.",
                 "nullable": false,
                 "increment": true
+              }, "AclRef": {
+                "as": "acl_ref",
+                "desc": "ACL ref.",
+                "integer": true,
+                "unsigned": true
               }
             },
             "index": {
@@ -75,9 +81,20 @@
             "desc": "User's email.",
             "text": true
           },
+          "FullName": {
+            "as": "full_name",
+            "desc": "User's full name.",
+            "text": true
+          },
           "GroupRef": {
             "as": "group_ref",
             "desc": "User Group ref.",
+            "integer": true,
+            "unsigned": true
+          },
+          "Tanja Guseva": {
+            "as": "tanja",
+            "desc": "Tanja's field.",
             "integer": true,
             "unsigned": true
           }

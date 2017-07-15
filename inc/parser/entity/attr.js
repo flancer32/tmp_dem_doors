@@ -11,7 +11,7 @@ const origDbTableAttr = require('../../data/db/table/attribute');
 const attrType = require('../../data/db/table/attribute/type');
 
 /**
- * Parse entity atttribute.
+ * Parse entity attribute.
  *
  * @param {parser.entity.attr.context} ctx
  */
@@ -45,6 +45,8 @@ function exec(ctx) {
     } else if (current.text) {
         dbAttr.type = attrType.string;
     }
+    if (current.unsigned) dbAttr.unsigned = true;
+    if (current.nullable) dbAttr.nullable = true;
     table.attributes.push(dbAttr);
     console.log('\t\tAttr: %s', attrName);
 }

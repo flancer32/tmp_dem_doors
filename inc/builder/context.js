@@ -8,6 +8,7 @@
  */
 module.exports = {
     cfg: require('../data/cfg'),                // application configuration
+    currentIndex: 0,                            // counter to save currently processed index
     db: require('../data/db'),                  // DB related data
     knex: {}                                    // initialized knex object
 };

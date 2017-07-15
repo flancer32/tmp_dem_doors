@@ -1,3 +1,7 @@
+/**
+ * @namespace builder.table
+ */
+
 const console = require('console');
 const utils = require('../utils');
 /** @type data.db.table.attribute.type */
@@ -6,23 +10,24 @@ const attrType = require('../data/db/table/attribute/type');
 
 function create(ctx) {
     const total = ctx.db.tables.length;
-    let current = ctx.currentTableIndex;
+    let current = ctx.currentIndex;
     if (current === undefined) {
         current = 0;
-        ctx.currentTableIndex = current;
+        ctx.currentIndex = current;
     }
+    /* return promise for tables processing or context at the end. */
     if (current < total) {
         /* continue loop of promises */
         return new Promise(function (resolve) {
             const knex = ctx.knex;
             const tables = ctx.db.tables;
-            let current = ctx.currentTableIndex;
+            let current = ctx.currentIndex;
             /** @type {data.db.table} */
             let table = tables[current];
             const name = utils.dbName(table.fullName);
             console.log('Create table: %s.', name);
-            current += 1;
-            ctx.currentTableIndex = current;
+            ++current;
+            ctx.currentIndex = current;
             knex.schema
                 .createTableIfNotExists(name, (baby) => {
                     const attrs = table.attributes;
@@ -51,6 +56,10 @@ function create(ctx) {
                         } else {
                             column.notNullable();
                         }
+                        /* unsigned */
+                        if (one.unsigned === true) {
+                            column.unsigned();
+                        }
                     }
                 })
                 .then(() => {
@@ -59,7 +68,8 @@ function create(ctx) {
                 });
         }).then(create);
     } else {
-        /* end loop of promises */
+        /* end loop of promises and reset ctx counter for tables creature */
+        ctx.currentIndex = 0;
         return ctx;
     }
 }
@@ -67,34 +77,33 @@ function create(ctx) {
 
 function drop(ctx) {
     const total = ctx.db.tables.length;
-    let current = ctx.currentTableIndex;
+    let current = ctx.currentIndex;
     if (current === undefined) {
         current = 0;
-        ctx.currentTableIndex = current;
+        ctx.currentIndex = current;
     }
     if (current < total) {
         /* continue loop of promises */
         return new Promise((resolve) => {
             const knex = ctx.knex;
             const tables = ctx.db.tables;
-            let current = ctx.currentTableIndex;
+            let current = ctx.currentIndex;
             /** @type {data.db.table} */
             const table = tables[current];
             const name = utils.dbName(table.fullName);
             console.log('Drop table: %s.', name);
-            current += 1;
-            ctx.currentTableIndex = current;
+            ++current;
+            ctx.currentIndex = current;
             knex.schema
                 .dropTableIfExists(name)
                 .then(() => {
                     console.log('Table %s is dropped.', name);
                     resolve(ctx);
                 });
-            // resolve(ctx);
         }).then(drop);
     } else {
-        /* end loop of promises and reset ctx counter to create tables */
-        ctx.currentTableIndex = 0;
+        /* end loop of promises and reset ctx counter for tables creature */
+        ctx.currentIndex = 0;
         return ctx;
     }
 }

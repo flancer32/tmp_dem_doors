@@ -1,5 +1,7 @@
 /.idea/
+/.project
+/.settings/
+/cfg.js
 /dist/
 /node_modules/
-/cfg.js
 /package-lock.json

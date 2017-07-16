@@ -44,7 +44,8 @@
                 "desc": "User ID.",
                 "nullable": false,
                 "increment": true
-              }, "AclRef": {
+              },
+              "AclRef": {
                 "as": "acl_ref",
                 "desc": "ACL ref.",
                 "integer": true,
@@ -55,6 +56,16 @@
               "PK": {
                 "type": "primary",
                 "aliases": ["id"]
+              }
+            },
+            "relation": {
+              "toAcl": {
+                "own": ["acl_ref"],
+                "ref": {
+                  "path": "/core/acl",
+                  "attrs": ["entity_id"]
+                },
+                "action": {"delete": "restrict", "update": "restrict"}
               }
             }
           }

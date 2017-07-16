@@ -1,5 +1,5 @@
 /**
- * Index script to aggregate 'builder' code.
+ * Build database structure with 'knex' using parsed DEM.
  *
  * @namespace builder
  */
@@ -15,8 +15,9 @@ var foreign = require('./builder/foreign');
  * @param {builder.context} ctx
  */
 function exec(ctx) {
-    /* Create promises chain to build the structure */
+    /* Create promises chain to re-build the structure */
     session.start(ctx)
+        .then(foreign.drop)
         .then(table.drop)
         .then(table.create)
         .then(foreign.create)

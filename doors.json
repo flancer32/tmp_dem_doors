@@ -1,0 +1,190 @@
+{
+  "dBEAR": {
+    "pack": {
+      "Product": {
+        "as": "prod",
+        "desc": "Production related entities",
+        "pack": {
+          "Attribute": {
+            "as": "attr",
+            "desc": "Attributes package",
+            "entity": {
+              "Product to Attribute Link": {
+                "as": "link",
+                "desc": "",
+                "attrs": {
+                  "ProductRef": {
+                    "as": "prod_ref",
+                    "desc": "Product reference.",
+                    "integer": true,
+                    "unsigned": true
+                  },
+                  "AttrRef": {
+                    "as": "attr_ref",
+                    "desc": "Attribute reference.",
+                    "integer": true,
+                    "unsigned": true
+                  }
+                },
+                "relation": {
+                  "toProduct": {
+                    "own": ["prod_ref"],
+                    "ref": {
+                      "path": "/prod",
+                      "attrs": ["id"]
+                    },
+                    "action": {"delete": "restrict", "update": "restrict"}
+                  }, "Attribute": {
+                    "own": ["attr_ref"],
+                    "ref": {
+                      "path": "/prod/attr",
+                      "attrs": ["id"]
+                    },
+                    "action": {"delete": "restrict", "update": "restrict"}
+                  }
+                }
+              }
+            }
+          },
+          "Order": {
+            "as": "order",
+            "desc": "Production order related entities.",
+            "entity": {
+              "Order Items": {
+                "as": "item",
+                "desc": "Link between order and production unit.",
+                "attrs": {
+                  "OrderRef": {
+                    "as": "order_ref",
+                    "desc": "Order reference.",
+                    "integer": true,
+                    "unsigned": true
+                  },
+                  "UnitRef": {
+                    "as": "unit_ref",
+                    "desc": "Production unit reference.",
+                    "integer": true,
+                    "unsigned": true
+                  }
+                },
+                "relation": {
+                  "toOrder": {
+                    "own": ["order_ref"],
+                    "ref": {
+                      "path": "/prod/order",
+                      "attrs": ["id"]
+                    },
+                    "action": {"delete": "restrict", "update": "restrict"}
+                  },
+                  "toProductUnit": {
+                    "own": ["unit_ref"],
+                    "ref": {
+                      "path": "/prod/unit",
+                      "attrs": ["id"]
+                    },
+                    "action": {"delete": "restrict", "update": "restrict"}
+                  }
+                }
+              }
+            }
+          },
+          "Unit": {
+            "as": "unit",
+            "desc": "Production unit package",
+            "entity": {
+              "Attribute": {
+                "as": "attr",
+                "desc": "Attribute values for production units.",
+                "attrs": {
+                  "UnitRef": {
+                    "as": "unit_ref",
+                    "desc": "Reference to production unit.",
+                    "integer": true,
+                    "unsigned": true
+                  },
+                  "AttrRef": {
+                    "as": "attr_ref",
+                    "desc": "Reference to attribute type.",
+                    "integer": true,
+                    "unsigned": true
+                  },
+                  "Value": {
+                    "as": "value",
+                    "desc": "Reference to attribute type.",
+                    "integer": true,
+                    "unsigned": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "entity": {
+          "Attribute": {
+            "as": "attr",
+            "desc": "",
+            "attrs": {
+              "Id": {
+                "as": "id",
+                "desc": "Entity ID.",
+                "increment": true
+              }
+            }
+          },
+          "Order": {
+            "as": "order",
+            "desc": "Production order.",
+            "attrs": {
+              "Id": {
+                "as": "id",
+                "desc": "Entity ID.",
+                "increment": true
+              }
+            }
+          },
+          "Unit": {
+            "as": "unit",
+            "desc": "Some qty of the one product to by produced and handled.",
+            "attrs": {
+              "Id": {
+                "as": "id",
+                "desc": "Entity ID.",
+                "increment": true
+              },
+              "Quantity": {
+                "as": "qty",
+                "desc": "Product quantity in the unit.",
+                "integer": true,
+                "unsigned": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "entity": {
+      "Product": {
+        "as": "prod",
+        "desc": "",
+        "attrs": {
+          "Id": {
+            "as": "id",
+            "desc": "Entity ID.",
+            "increment": true
+          }
+        }
+      },
+      "User": {
+        "as": "user",
+        "desc": "Any user who can login into the application (worker or customer).",
+        "attrs": {
+          "Id": {
+            "as": "id",
+            "desc": "User ID.",
+            "increment": true
+          }
+        }
+      }
+    }
+  }
+}

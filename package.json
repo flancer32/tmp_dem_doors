@@ -6,10 +6,13 @@
   "dependencies": {
     "commander": "^2.11.0",
     "knex": "^0.13.0",
-    "mariasql": "^0.2.6"
+    "mariasql": "^0.2.6",
+    "teqfw-dem-es": "git+https://github.com/teqfw/dem-es.git"
   },
   "devDependencies": {
-    "eslint": "^4.2.0"
+    "chai": "^4.1.0",
+    "eslint": "^4.2.0",
+    "mocha": "^3.4.2"
   },
   "scripts": {
     "test": "test"

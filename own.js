@@ -2,10 +2,18 @@
 /**
  * Scheme generator CLI app.
  */
+const console = require('console');
+const cfg = require('./cfg');
 
 /* npm libs */
 /** @type {teqfw.dem} */
 const teqfw = require('teqfw-dem-es');
 
-const bu = teqfw.util.clone({ad: 'da'});
-console.log('op: %s', bu.ad);
+/** @type {teqfw.dem.context} */
+const ctx = teqfw.context.clone();
+ctx.cfg.knex = cfg.knex;
+console.log(
+    'Database: %s; user: %s;',
+    ctx.cfg.knex.connection.database,
+    ctx.cfg.knex.connection.user
+);

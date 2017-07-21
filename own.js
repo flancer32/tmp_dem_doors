@@ -12,8 +12,7 @@ const teqfw = require('teqfw-dem-es');
 /** @type {teqfw.dem.context} */
 const ctx = teqfw.context.clone();
 ctx.cfg.knex = cfg.knex;
-console.log(
-    'Database: %s; user: %s;',
-    ctx.cfg.knex.connection.database,
-    ctx.cfg.knex.connection.user
-);
+ctx.logger = console;
+ctx.dem = {dem: {path: '/root/path'}, entity: {user: {}}};
+
+teqfw.build(ctx);

@@ -13,6 +13,7 @@ const teqfw = require('teqfw-dem-es');
 const ctx = teqfw.context.clone();
 ctx.cfg.knex = cfg.knex;
 ctx.logger = console;
-ctx.dem = {dem: {path: '/root/path'}, entity: {user: {}}};
+ctx.filename = 'doors.json';
+// ctx.dem = {dem: {path: '/root/path'}, entity: {user: {}}};
 
 teqfw.build(ctx);

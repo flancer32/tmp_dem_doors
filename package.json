@@ -15,7 +15,8 @@
     "mocha": "^3.4.2"
   },
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "postinstall": "cd ./node_modules/; rm -fr teqfw-dem-es; git clone https://github.com/teqfw/dem-es.git teqfw-dem-es;"
   },
   "repository": {
     "type": "git",

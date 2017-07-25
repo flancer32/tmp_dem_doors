@@ -1,5 +1,6 @@
 {
-  "dBEAR": {
+  "DEM": {
+    ".dat": "/path/to/pack",
     "pack": {
       "Product": {
         "as": "prod",

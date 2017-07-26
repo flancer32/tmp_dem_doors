@@ -1,0 +1,42 @@
+{
+  "DEM": {
+    ".dat": "/user",
+    "registry": {
+      ".dat": {
+        "desc": "user registry",
+        "attrs": {
+          "id": {
+            "as": "id",
+            "desc": "Entity ID.",
+            "increment": true
+          }
+        }
+      }
+    },
+    "permission": {
+      ".dat": {
+        "desc": "user permission",
+        "attrs": {
+          "id": {
+            "as": "id",
+            "desc": "Entity ID.",
+            "increment": true
+          }
+        }
+      }
+    },
+    "group": {
+      ".dat": {
+        "desc": "user group",
+        "attrs": {
+          "id": {
+            "as": "id",
+            "desc": "Entity ID.",
+            "increment": true
+          }
+        }
+      },
+      "acl": {}
+    }
+  }
+}

@@ -20,7 +20,7 @@ const cfg = require('./cfg');
 const ctx = teqfw.context.clone();
 ctx.cfg.knex = cfg.knex;
 ctx.logger = console;
-ctx.filename = 'doors.json';
+ctx.filename = 'dem2.json';
 
 /**
  * Build DB structure from DEM JSON.

@@ -17,7 +17,7 @@ const cfg = require('./cfg');
  *
  * @type {teqfw.dem.context}
  */
-const ctx = teqfw.context.clone();
+const ctx = Object.assign({}, teqfw.context);
 ctx.cfg.knex = cfg.knex;
 ctx.logger = console;
 ctx.filename = 'dem2.json';
